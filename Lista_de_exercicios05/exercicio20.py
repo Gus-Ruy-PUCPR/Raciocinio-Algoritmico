@@ -10,37 +10,40 @@
 
 # Leituras pre-inputadas
 leituras_salas = [
-    # Sala 101 - Reuniões
-    ("Sala 101", 22.5),
-    ("Sala 101", 23.0),
-    ("Sala 101", 24.1),
-    ("Sala 101", 25.0),
-    ("Sala 101", 24.8),
+    ("Sala 101 - Reuniões", 23.5),
+    ("Sala 101 - Reuniões", 24.0),
+    ("Sala 101 - Reuniões", 26.1),
+    ("Sala 101 - Reuniões", 26.0),
+    ("Sala 101 - Reuniões", 25.8),
     
-    # Sala 102 - Servidores (com temperaturas elevadas gerando alerta)
-    ("Sala 102", 27.2),
-    ("Sala 102", 28.5),
-    ("Sala 102", 29.0),
-    ("Sala 102", 26.5),
-    ("Sala 102", 25.8),
+    ("Sala 102 - Servidores", 27.2),
+    ("Sala 102 - Servidores", 28.5),
+    ("Sala 102 - Servidores", 29.0),
+    ("Sala 102 - Servidores", 26.5),
+    ("Sala 102 - Servidores", 25.8),
     
-    # Sala 103 - Diretoria (com temperaturas mistas)
-    ("Sala 103", 23.0),
-    ("Sala 103", 24.5),
-    ("Sala 103", 26.8),
-    ("Sala 103", 27.4),
-    ("Sala 103", 25.2)
+    ("Sala 103 - Diretoria", 23.0),
+    ("Sala 103 - Diretoria", 24.5),
+    ("Sala 103 - Diretoria", 26.8),
+    ("Sala 103 - Diretoria", 27.4),
+    ("Sala 103 - Diretoria", 25.2)
 ]
 
 resumo_salas = {}
 alertas = []
-i = 1
+
 for sala, temperatura in leituras_salas:
     if temperatura >= 26.0:
         alertas += [sala, temperatura]
 
     if sala not in resumo_salas:
-        resumo_salas[sala] = {"Temperatura Mínima": temperatura, "Temperatura Máxima": temperatura, "Temperatura Média": 0, "Quantidade": 1, "Soma": temperatura}
+        resumo_salas[sala] = {
+            "Temperatura Mínima": temperatura,
+            "Temperatura Máxima": temperatura,
+            "Temperatura Média": 0,
+            "Quantidade": 1,
+            "Soma": temperatura
+            }
     else:
         if resumo_salas[sala]["Temperatura Mínima"] > temperatura:
             resumo_salas[sala]["Temperatura Mínima"] = temperatura
@@ -60,12 +63,10 @@ print("-"*50)
 for key, value in resumo_salas.items():
     print(f"Salas: {key}\nTemperaturas: {value}")
     print("-"*50)
-print()
 
 print()
 print("-"*50)
+print("Alertas de temperatura!")
 for i in range(len(alertas)):
-    print("Alertas de temperatura!")
-    print(f"Salas: {alertas[i][0]}\nTemperaturas: {alertas[i][1]}")
-    print("-"*50)
+    print(f"{alertas[i]}")
 print()
